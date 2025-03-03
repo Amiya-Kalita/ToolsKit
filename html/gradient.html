@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools | Kit.com</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/gradient.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">ToolsKit</a>
+        
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" onclick="loadPage('home')">Home</a>
+            <a href="#about" onclick="loadPage('about')">About</a>
+            <a href="#contact" onclick="loadPage('contact')">Tools</a>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+            
+            <div class="auth-section" id="authSection">
+                <!-- Dynamic auth buttons/user menu -->
+            </div>
+        </div>
+
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    <!-- dynamic content show here -->
+    <div id="content">
+        <!-- Dynamic content loads here -->
+
+    </div>
+     <!-- gradient generator cooding started here -->
+          
+     <header>
+        <h1>Gradient Generator</h1>
+    </header>
+    <main>
+        <section id="preview"></section>
+        <section id="controls">
+            <div class="control-group">
+                <label>Color 1: 
+                    <input type="color" id="color1" value="#ff6b6b">
+                    <input type="text" id="color1-hex" value="#ff6b6b">
+                </label>
+                <label>Color 2: 
+                    <input type="color" id="color2" value="#4ecdc4">
+                    <input type="text" id="color2-hex" value="#4ecdc4">
+                </label>
+            </div>
+            <div class="control-group">
+                <label>Direction: 
+                    <select id="direction">
+                        <option value="custom">Custom</option>
+                        <option value="0">To Right (0°)</option>
+                        <option value="90">To Bottom (90°)</option>
+                        <option value="180">To Left (180°)</option>
+                        <option value="270">To Top (270°)</option>
+                        <option value="45">To Bottom Right (45°)</option>
+                        <option value="135">To Bottom Left (135°)</option>
+                        <option value="225">To Top Left (225°)</option>
+                        <option value="315">To Top Right (315°)</option>
+                    </select>
+                </label>
+            </div>
+            <div class="control-group" id="angle-control">
+                <label>Angle: 
+                    <input type="range" id="angle" min="0" max="360" value="90">
+                    <input type="number" id="angle-number" min="0" max="360" value="90">°
+                </label>
+            </div>
+            <div class="control-group">
+                <label>Type: 
+                    <select id="type">
+                        <option value="linear">Linear</option>
+                        <option value="radial">Radial</option>
+                    </select>
+                </label>
+            </div>
+            <button id="random-btn">Random Gradient</button>
+            <button id="reverse-btn">Reverse Gradient</button>
+        </section>
+        <section id="code-display">
+            <textarea id="css-code" readonly></textarea>
+            <button id="copy-btn">Copy Code</button>
+        </section>
+        <section id="presets">
+            <h2>Presets</h2>
+            <div id="preset-list"></div>
+        </section>
+    </main>
+    <div id="toast">Copied!</div>
+
+     <!-- gradient generator cooding ends here -->
+        <div class="toast" id="toast"></div>
+    </div>
+    <!-- footer cooding started here -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p style="color: #1a73e8;">ToolsKit.com is a free useful tools providing serive. use any tools for free without any limit.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Free Tools</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li style="color: #1a73e8;">Email: amiya124@gmail.com</li>
+                        <li style="color: #1a73e8;">Phone: +91 88228601xx</li>
+                        <li style="color: #1a73e8;">Address: 64 Jogipara, Guwahati</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ToolsKit.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Add Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <!-- footer cooding ends here -->
+<script src="../js/gradient.js"></script>
+<script src="../js/index.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools | Kit.com</title>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/imgConvert.css">
+    
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">ToolsKit</a>
+        
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" onclick="loadPage('home')">Home</a>
+            <a href="#about" onclick="loadPage('about')">About</a>
+            <a href="#contact" onclick="loadPage('contact')">Tools</a>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+            
+            <div class="auth-section" id="authSection">
+                <!-- Dynamic auth buttons/user menu -->
+            </div>
+        </div>
+
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    <!-- dynamic content show here -->
+    <div id="content">
+        <!-- Dynamic content loads here -->
+
+    </div>
+     <!-- img convert cooding started here -->
+
+     <div class="container">
+        <div class="header">
+            <h1 class="title">Image Converter Pro</h1>
+            <p class="subtitle">Convert images to various formats instantly</p>
+        </div>
+
+        <div class="upload-section" id="dropZone" onclick="document.getElementById('imageUpload').click()">
+            <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+            </svg>
+            <p>Drag & drop files or <span style="color: var(--primary)">browse</span></p>
+            <p class="file-info" id="fileInfo"></p>
+        </div>
+
+        <input type="file" id="imageUpload" accept="image/*">
+        
+        <select class="format-select" id="formatSelect">
+            <option value="jpeg">JPEG</option>
+            <option value="png">PNG</option>
+            <option value="webp">WebP</option>
+            <option value="bmp">BMP</option>
+            <option value="gif">GIF</option>
+        </select>
+
+        <button class="convert-btn" id="convertButton">
+            <span class="btn-text">Convert Now</span>
+            <div class="loading"></div>
+        </button>
+
+        <div class="preview-section">
+            <img class="preview-image" id="previewImage" alt="Preview">
+        </div>
+
+        <a class="download-btn" id="downloadLink" download>
+            Download Image
+            <svg style="width:18px;height:18px;margin-left:8px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+        </a>
+    </div>
+
+     <!-- img convert cooding ends here -->
+        <div class="toast" id="toast"></div>
+    </div>
+    <!-- footer cooding started here -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p style="color: #1a73e8;">ToolsKit.com is a free useful tools providing serive. use any tools for free without any limit.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Free Tools</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li style="color: #1a73e8;">Email: amiya124@gmail.com</li>
+                        <li style="color: #1a73e8;">Phone: +91 88228601xx</li>
+                        <li style="color: #1a73e8;">Address: 64 Jogipara, Guwahati</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ToolsKit.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Add Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <!-- footer cooding ends here -->
+<script src="../js/imgConvert.js"></script>
+<script src="../js/index.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</body>
+</html>
