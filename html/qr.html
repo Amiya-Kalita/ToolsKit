@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools | Kit.com</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 560px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            pointer-events: none;
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-50%); }
+            100% { transform: rotate(45deg) translateX(50%); }
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .input-group {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .color-pickers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-input {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 12px;
+            padding: 4px;
+            background: transparent;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        input[type="color"]:hover {
+            transform: scale(1.05);
+        }
+
+        button {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        #qrcode {
+            margin: 2.5rem auto 1rem;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            max-width: 256px;
+        }
+
+        #qrcode.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .download-btn {
+            margin-top: 1.5rem;
+            display: none;
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+
+        .download-btn.show {
+            display: block;
+            animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                border-radius: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .color-pickers {
+                grid-template-columns: 1fr;
+            }
+
+            input[type="text"] {
+                padding: 0.8rem;
+            }
+
+            button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        .loader {
+            display: none;
+            width: 48px;
+            height: 48px;
+            margin: 2rem auto;
+            border: 5px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ToolsKit QR Generator</h1>
+        
+        <div class="input-group">
+            <input type="text" id="content" placeholder="Enter URL or text...">
+        </div>
+
+        <div class="color-pickers">
+            <div class="input-group">
+                <label>QR Color</label>
+                <div class="color-input">
+                    <input type="color" id="fg-color" value="#ffffff">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Background Color</label>
+                <div class="color-input">
+                    <input type="color" id="bg-color" value="#000000">
+                </div>
+            </div>
+        </div>
+
+        <button onclick="generateQR()">Generate QR Code</button>
+        <div class="loader" id="loader"></div>
+        <div id="qrcode"></div>
+        <button class="download-btn" onclick="downloadQR()">Download QR Code</button>
+    </div>
+
+    <script>
+        let qr = null;
+        let isGenerating = false;
+
+        async function generateQR() {
+            if(isGenerating) return;
+            
+            const content = document.getElementById('content').value;
+            const fgColor = document.getElementById('fg-color').value;
+            const bgColor = document.getElementById('bg-color').value;
+            const loader = document.getElementById('loader');
+            const qrcodeDiv = document.getElementById('qrcode');
+
+            if (!content) {
+                showError('Please enter some text or URL');
+                return;
+            }
+
+            if(qr) {
+                qr.clear();
+                qrcodeDiv.innerHTML = '';
+            }
+
+            qrcodeDiv.classList.remove('active');
+            document.querySelector('.download-btn').classList.remove('show');
+            loader.style.display = 'block';
+            isGenerating = true;
+
+            // Simulate network delay for demo
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            qr = new QRCode(qrcodeDiv, {
+                text: content,
+                width: 256,
+                height: 256,
+                colorDark: fgColor,
+                colorLight: bgColor,
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            loader.style.display = 'none';
+            isGenerating = false;
+            
+            setTimeout(() => {
+                qrcodeDiv.classList.add('active');
+                document.querySelector('.download-btn').classList.add('show');
+            }, 50);
+        }
+
+        function downloadQR() {
+            const canvas = document.querySelector('#qrcode canvas');
+            const image = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `qr-${Date.now()}.png`;
+            link.href = image;
+            link.click();
+        }
+
+        function showError(message) {
+            const errorEl = document.createElement('div');
+            errorEl.className = 'error-message';
+            errorEl.textContent = message;
+            errorEl.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #ef4444;
+                color: white;
+                padding: 1rem;
+                border-radius: 8px;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            document.body.appendChild(errorEl);
+            setTimeout(() => errorEl.remove(), 3000);
+        }
+
+        // Event listeners
+        document.getElementById('fg-color').addEventListener('input', generateQR);
+        document.getElementById('bg-color').addEventListener('input', generateQR);
+        document.getElementById('content').addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') generateQR();
+        });
+    </script>
+</body>
+</html>
